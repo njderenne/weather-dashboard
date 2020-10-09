@@ -38,5 +38,21 @@ var getTodaysWeather = function() {
 };
 
 var getFutureWeather = function() {
-    
-}
+    fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    console.log(data);
+                    for (i = 3; i<data.list.length; i+=8) {
+                        console.log("Day " + i/8);
+                        console.log("Todays date is " + data.list[i].dt_txt);
+                        console.log("Weather icon is " + data.list[i].weather[0].icon);
+                        console.log("The high temperature is " + data.list[i].main.temp_max + "F");
+                        console.log("The low temperature is " + data.list[i].main.temp_min + "F");
+                        console.log("The humidity will be " + data.list[i].main.humidity + "%");
+                        console.log("");
+                    };
+                });
+            };
+        });
+};

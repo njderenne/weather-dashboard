@@ -1,3 +1,27 @@
-h1 {
-    color: red;
-};
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.search {
+    display: grid;
+    grid-row: 1;
+    width: auto;
+}
+
+.weather {
+    display: grid;
+    grid-column: 2;
+    grid-template-rows: 1fr 1fr ; 
+}
+
+.current {
+    display: grid;
+    grid-row: 1;
+}
+
+.forecast {
+    display: grid;
+    grid-row: 2;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
