@@ -1,6 +1,23 @@
+*{
+  padding: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+}
+
+main {
+    background-color: lightgray;
+    padding: 10px;
+}
+.app-title {
+    text-align: center;
+    background-color:#fff;
+    color: #000;
+    margin: 0;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
 }
 
 .search {
@@ -13,15 +30,47 @@
     display: grid;
     grid-column: 2;
     grid-template-rows: 1fr 1fr ; 
+    grid-gap: 10px;
+    background-color: gray;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .current {
     display: grid;
     grid-row: 1;
+    background-color: darkcyan;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.city-icon {
+    grid-column: 1;
+}
+
+.city-data {
+    grid-column: 2;
+}
+
+.current-weather {
+    list-style: none;
+    padding-left: 5px;
 }
 
 .forecast {
     display: grid;
     grid-row: 2;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
 }
+
+.future-forcast {
+    background-color: cyan;
+    border-radius: 10px;
+}
+
+.future-weather {
+    list-style: none;
+    padding-left: 5px;
+}
+
