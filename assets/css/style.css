@@ -21,9 +21,33 @@ main {
 }
 
 .search {
-    display: grid;
+    display: inline;
     grid-row: 1;
-    width: auto;
+}
+
+#search {
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: #000;
+    color: grey;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 66%;
+    margin: auto;
+    padding: 5px 2px 5px 2px;
+}
+
+
+.btn:hover {
+    background-color: #fff;
+    columns: #000;
 }
 
 .weather {
@@ -55,6 +79,18 @@ main {
 .current-weather {
     list-style: none;
     padding-left: 5px;
+}
+
+.favorable {
+    background-color: green;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.severe {
+    background-color: red;
 }
 
 .forecast {

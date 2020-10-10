@@ -16,23 +16,26 @@
             <div class="search">
                 <label for="search">City:</label>
                 <input type="text" id="search">
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn">Submit</button>
+                <div class="search-history">
+                    <ul class="searched-city"></ul>
+                </div>
             </div>
             <div class="weather">
                 <div class="current">
                     <div class="city-icon">
                         <ul class="current-weather">
-                            <li>City Name:</li>
-                            <li>Data:</li>
-                            <li>Icon:</li>
+                            <li class="city"></li>
+                            <li class="current-date">Date:</li>
+                            <li class="current-icon">Icon:</li>
                         </ul>
                     </div>
                     <div class="city-data">
                         <ul class="current-weather">
-                            <li>Temperature:</li>
-                            <li>Humidity:</li>
-                            <li>Wind Speed:</li>
-                            <li>UV Index:</li>
+                            <li class="current-temp"></li>
+                            <li class="current-humidity"></li>
+                            <li class="current-wind"></li>
+                            <li class="current-uv-index"></li>
                         </ul>
                     </div>
                 </div>
