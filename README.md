@@ -10,3 +10,4 @@ The user will input a city name into the seach bar. When the submit button is cl
 
 ## Link to Deployed Application
 
+https://njderenne.github.io/weather-dashboard/
