@@ -2,12 +2,15 @@
 var inputEl = document.querySelector("#search");
 
 var cityEl = document.querySelector(".city");
+var currentIcon = document.querySelector(".current-icon");
 var currentTemp = document.querySelector(".current-temp");
 var currentHumidity = document.querySelector(".current-humidity");
 var currentWind = document.querySelector(".current-wind");
 var currentUvIndex = document.querySelector(".current-uv-index");
 var searchedCityEl = document.querySelector(".searched-city");
 //var searchHistoryEl = document.querySelector(".search-history");
+
+var recallSearchEl = document.querySelector(".recall-search");
 
 var submitBtnEl = document.querySelector(".btn");
 
@@ -32,10 +35,11 @@ var getTodaysWeather = function(city) {
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
-                    //console.log(data);
+                    console.log(data);
                     cityEl.textContent = "City: " + city;
-                    console.log("This needs to display the date!!!");
-                    console.log("The weather icon code is " + data.weather[0].icon);
+                    //console.log("This needs to display the date!!!");
+                    currentIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
+                    //console.log("The weather icon code is " + data.weather[0].icon);
                     currentTemp.textContent = "Temperature: " + data.main.temp +" F";
                     currentHumidity.textContent = "Humidity: " + data.main.humidity + "%";
                     currentWind.textContent = "Wind Speed: " + data.wind.speed + " mph";
@@ -59,25 +63,31 @@ var getTodaysWeather = function(city) {
                 });
             };
         });
-    cityHistory(city); 
+    getFutureWeather(city);
+    cityHistory(city);
 };
 
 
 
-var getFutureWeather = function() {
+var getFutureWeather = function(city) {
     fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
                     console.log(data);
+                    j=1;
                     for (i = 3; i<data.list.length; i+=8) {
-                        console.log("Day " + i/8);
-                        console.log("Todays date is " + data.list[i].dt_txt);
-                        console.log("Weather icon is " + data.list[i].weather[0].icon);
-                        console.log("The high temperature is " + data.list[i].main.temp_max + "F");
-                        console.log("The low temperature is " + data.list[i].main.temp_min + "F");
-                        console.log("The humidity will be " + data.list[i].main.humidity + "%");
-                        console.log("");
+                        var futureDateEl = document.querySelector(".future-date-" + j);
+                        var futureIconEl = "";
+                        var futureTempEl = document.querySelector(".future-temp-" + j);
+                        var futureHumidityEl = document.querySelector(".future-humidity-" + j);
+                        splitDate = data.list[i].dt_txt;
+                        futureDateEl.textContent = "Date: " + splitDate.split(" ")[0];
+                        futureIconEl.textContent = "Icon: " + data.list[i].weather[0].icon;
+                        futureTempEl.textContent = "Temp: " + data.list[i].main.temp + " F";
+                        futureHumidityEl.textContent = "Humidity: " + data.list[i].main.humidity + "%";
+
+                        j++;
                     };
                 });
             };
@@ -85,38 +95,16 @@ var getFutureWeather = function() {
 };
 
 var cityHistory = function(city) {
-    if (searchedArray.length<8) {
-        console.log("less than 8");
-        searchedArray.push(city);
-        console.log(searchedArray);
-    } else {
-        console.log("more than 8");
-        searchedArray.shift();
-        searchedArray.push(city);
-    }
-    for (i=0; i<searchedArray.length; i++) {
-        //saving the searchedArray to local storage
-        localStorage.setItem("searchedCity: "+ i, JSON.stringify(searchedArray[i]));
-    }
-
-    // var searchedListEl = document.createElement("ul");
-    // searchHistoryEl.appendChild(searchedListEl);
-    // for (i = 0; i < searchedArray.length; i++) {
-    //     var searchedEl = document.createElement("li");
-    //     searchedEl.classList = "recently-searched";
-    //     console.log(searchedArray);
-    //     searchedEl.textContent = searchedArray[i];
-    //     console.log(searchedEl);
-    //     searchedCityEl.appendChild(searchedEl);
-    // }
-}
-
-var loadSearchHistory = function() {
-    for (i=0; i<searchedArray.length; i++) {
-        searchedCity = JSON.parse(localStorage.getItem("searchedCity: " + i));
-        console.log(searchedCity);
-    }
+    citySearch = document.createElement("button");
+    citySearch.textContent = city;
+    citySearch.classList = "btn recall-search";
+    citySearch.setAttribute("value", city);
+    //citySearch.setAttribute("href", );
+    searchedCityEl.appendChild(citySearch);
+    console.log(citySearch.value.trim());
+    city = citySearch.value.trim();
 };
 
 
 submitBtnEl.addEventListener("click", formSubmitHandler);
+
