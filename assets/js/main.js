@@ -31,21 +31,21 @@ var formSubmitHandler = function(event) {
 };
 
 var getTodaysWeather = function(city) {
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
                     console.log(data);
                     cityEl.textContent = "City: " + city;
                     //console.log("This needs to display the date!!!");
-                    currentIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
+                    currentIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
                     //console.log("The weather icon code is " + data.weather[0].icon);
                     currentTemp.textContent = "Temperature: " + data.main.temp +" F";
                     currentHumidity.textContent = "Humidity: " + data.main.humidity + "%";
                     currentWind.textContent = "Wind Speed: " + data.wind.speed + " mph";
                     var lat = data.coord.lat;
                     var lon = data.coord.lon;
-                    fetch("http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + key)
+                    fetch("https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + key)
                         .then(function(response) {
                             response.json().then(function(data) {
                                 console.log(data);
@@ -70,7 +70,7 @@ var getTodaysWeather = function(city) {
 
 
 var getFutureWeather = function(city) {
-    fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
